@@ -1,0 +1,77 @@
+@import '../../variables.scss';
+
+.todo-item {
+    @include row(row, flex-start, center);
+    border-bottom: 1px solid #ededed;
+    $checkbox-width: 48px;
+    $content-width: calc(100% - 48px - 56px);
+    $removed-btn-width: 56px;
+    & .checkbox-wrapper {
+        width: $checkbox-width;
+        @include row(row, center, center);
+        & .checkbox {
+            width: 40px;
+            height: 40px;
+            background-size: cover;
+            background-position: center;
+            cursor: pointer;
+            &.checked {
+                background-image: url('data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2240%22%20height%3D%2240%22%20viewBox%3D%22-10%20-18%20100%20135%22%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2250%22%20r%3D%2250%22%20fill%3D%22none%22%20stroke%3D%22%23bddad5%22%20stroke-width%3D%223%22/%3E%3Cpath%20fill%3D%22%235dc2af%22%20d%3D%22M72%2025L42%2071%2027%2056l-4%204%2020%2020%2034-52z%22/%3E%3C/svg%3E');
+            }
+            &.not-checked {
+                background-image: url('data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2240%22%20height%3D%2240%22%20viewBox%3D%22-10%20-18%20100%20135%22%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2250%22%20r%3D%2250%22%20fill%3D%22none%22%20stroke%3D%22%23ededed%22%20stroke-width%3D%223%22/%3E%3C/svg%3E');
+            }
+        }
+    }
+    & .content-wrapper {
+        width: $content-width;
+        &.completed {
+            & p {
+                color: $text-light;
+                text-decoration: line-through;
+            }
+        }
+        & p, input[type="text"] {
+            padding: spacing(2) 0 spacing(2) spacing(1);
+            color: $text-primary;
+            font-size: 20px;
+            line-height: 1.2;
+            @media screen and (min-width: $sm) {
+                font-size: 24px;
+            }
+        }
+        & input[type="text"] {
+            border: none;
+            outline: 0;
+            width: 100%;
+            border: 1px solid rgb(153, 153, 153);
+            box-shadow: inset 0 -1px 5px 0 rgba(0, 0, 0, 0.2);
+            -webkit-box-shadow: inset 0 -1px 5px 0 rgba(0, 0, 0, 0.2);
+            -moz-box-shadow: inset 0 -1px 5px 0 rgba(0, 0, 0, 0.2);
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        & p {
+            @include _transition(all, 0.3s);
+            word-wrap: break-word;
+        }
+    }
+    & .removed-btn-wrapper {
+        width: $removed-btn-width;
+        @include row(row, center, center);
+        & button {
+            @include _transition(opacity, 0.3s);
+            opacity: 1;
+            &.hidden {
+                display: none;
+                opacity: 0;
+            }
+            & i {
+                color: $red-light;
+                font-size: 18px;
+            }
+        }
+    }
+}

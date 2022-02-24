@@ -1,0 +1,52 @@
+
+// colors
+
+$text-primary: #4d4d4d;
+$text-secondary: #777;
+$text-light: #d9d9d9;
+
+$white-main: #fff;
+$white-light: rgb(245, 245, 245);
+
+$red-light: rgba(175, 47, 47, 0.15);
+
+// sizes
+
+$sm: 600px;
+$md: 900px;
+$lg: 1200px;
+$xl: 1536px;
+
+// spacing
+
+@function spacing($spacing) {
+    @return #{$spacing * 8}px;
+}
+
+// functions 
+
+@mixin row($direction: row, $justify: flex-start, $align: flex-start, $flex: unset) {
+    display: flex;
+    flex-direction: $direction;
+    align-items: $align;
+    justify-content: $justify;
+    & > * {
+        flex: $flex
+    }
+}
+
+@mixin _transform($translateX, $translateY, $rest) {
+    transform: translate($translateX, $translateY) $rest;
+    -webkit-transform: translate($translateX, $translateY) $rest;
+    -moz-transform: translate($translateX, $translateY) $rest;
+    -ms-transform: translate($translateX, $translateY) $rest;
+    -o-transform: translate($translateX, $translateY) $rest;
+}
+
+@mixin _transition($prop, $timeout, $type: ease-out) {
+    transition: $prop $timeout $type;
+    -webkit-transition: $prop $timeout $type;
+    -moz-transition: $prop $timeout $type;
+    -ms-transition: $prop $timeout $type;
+    -o-transition: $prop $timeout $type;
+}

@@ -1,13 +1,15 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import store from './redux/store'
+import { Provider } from 'react-redux'
+import RouteComponents from './routes/RouteComponents'
 
-function App() {
+const App = () => {
   return (
     <div className="App">
-      <h1>Hi</h1>
+      <Provider store={ store }>
+        <RouteComponents />
+      </Provider>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

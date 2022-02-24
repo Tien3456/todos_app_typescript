@@ -1,0 +1,35 @@
+@import '../../variables.scss';
+
+.nav {
+    @include row(row, space-between, center);
+    padding: spacing(1) spacing(2);
+    color: $text-secondary;
+    font-size: 14px;
+    & span {
+        color: inherit;
+        font-size: inherit;
+    }
+    & .links-wrapper {
+        @include row(row, flex-start, center);
+        & > * {
+            padding: 3px 5px;
+            text-transform: capitalize;
+            @include _transition(border, 0.3s);
+            &.active, 
+            &:hover {
+                border: 1px solid $red-light;
+                border-radius: 3px;
+            }
+        }
+        & > *:not(:last-child) {
+            margin-right: 3px;
+        }
+    }
+    & button.clear-btn {
+        color: inherit;
+        font-size: inherit;
+        &.hidden {
+            visibility: hidden;
+        }
+    }
+}

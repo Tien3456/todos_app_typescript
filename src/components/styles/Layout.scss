@@ -1,0 +1,43 @@
+@import '../../variables.scss';
+
+.full-screen {
+    background-color: $white-light;
+    width: 100%;
+    min-height: 100vh;
+    padding-top: spacing(3);
+    padding-bottom: spacing(10);
+    & .heading {
+        font-size: 60px;
+        @media screen and (min-width: $sm) {
+            color: $red-light;
+            text-align: center;
+            font-size: 100px;
+            font-weight: 200;
+        }
+    }
+    & .center {
+        @include row(row, center, center);
+    }
+    & .main-content {
+        width: 100%;
+        box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 25px 50px 0 rgba(0, 0, 0, 0.1);
+        background: $white-main;
+        margin: spacing(3) 0;
+        @media screen and (min-width: $sm) {
+            width: 550px;
+            margin: spacing(4) 0;
+        }
+    }
+    & .footer {
+        @include row(column, center, center);
+        margin-top: spacing(3);
+        & > p {
+            font-size: 10px;
+            color: #bfbfbf;
+            text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+            &:not(:last-child) {
+                margin-bottom: spacing(1);
+            }
+        }
+    }
+}

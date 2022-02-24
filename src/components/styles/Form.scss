@@ -1,0 +1,42 @@
+@import '../../variables.scss';
+
+.todos-form {
+    & .input-wrapper {
+        position: relative;
+        & input[type="text"] {
+            width: 100%;
+            padding: spacing(2) spacing(2) spacing(2) 60px;
+            border: none;
+            outline: 0;
+            display: inline-block;
+            font-size: 24px;
+            color: $text-primary;
+            &::placeholder {
+                font-size: 24px;
+                line-height: 1.4em;
+                font-style: italic;
+                opacity: 0.3;
+            }
+        }
+        & .right-icon {
+            position: absolute;
+            top: 50%;
+            left: spacing(2);
+            opacity: 0.2;
+            @include _transform(0, -50%, rotate(90deg));
+            font-size: 22px;
+        }
+        & .divider {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            z-index: 1;
+            opacity: 0.5;
+            box-shadow: inset 0 -2px 1px rgba(0, 0, 0, 0.2);
+            -webkit-box-shadow: inset 0 -2px 1px rgba(0, 0, 0, 0.2);
+            -moz-box-shadow: inset 0 -2px 1px rgba(0, 0, 0, 0.2);
+        }
+    }
+}
