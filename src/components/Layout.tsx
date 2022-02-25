@@ -1,10 +1,14 @@
 import React from 'react'
-import './styles/Layout.scss'
 import Form from './Form'
 import Navbar from './Navbar'
 import { Outlet } from 'react-router-dom'
+import { TodosProvider } from '../context/todosContext'
+import useTodos from '../hooks/useTodos'
 
 const Layout = () => {
+
+    const todosContext = useTodos()
+
     return (
         <div className="container-fluid">
             <div className="full-screen">
@@ -12,13 +16,15 @@ const Layout = () => {
                     <h1 className="heading">todos</h1>
                     <div className="center">
                         <div className="main-content">
-                            <div className="form-wrapper">
-                                <Form />
-                                <ul>
-                                    <Outlet />
-                                </ul>
-                                <Navbar />
-                            </div>
+                                <div className="form-wrapper">
+                                    <TodosProvider value={ todosContext }>
+                                        <Form />
+                                        <ul>
+                                            <Outlet />
+                                        </ul>
+                                        <Navbar />
+                                    </TodosProvider>
+                                </div>
                         </div>
                     </div>
                     <div className="footer">

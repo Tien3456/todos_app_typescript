@@ -1,13 +1,10 @@
-import store from './redux/store'
-import { Provider } from 'react-redux'
 import RouteComponents from './routes/RouteComponents'
+import './App.scss'
 
 const App = () => {
   return (
     <div className="App">
-      <Provider store={ store }>
-        <RouteComponents />
-      </Provider>
+      <RouteComponents />
     </div>
   )
 }

@@ -1,11 +1,11 @@
 import React from 'react'
 import Item from '../components/Item'
-import { useAppSelector } from '../redux/hooks'
+import { useTodos } from '../context/todosContext'
 
 const ActiveItems = () => {
 
-    const todoItems = useAppSelector(state => state.todos)
-    const activeItems = todoItems.filter(item => !item.completed)
+    const todos = useTodos()
+    const activeItems = todos.items.filter(item => !item.completed)
 
     return (
         <>

@@ -1,18 +1,20 @@
 import React, { useState } from 'react'
 import { IItem } from '../types'
-import './styles/Item.scss'
-import { useAppDispatch } from '../redux/hooks'
-import actions from '../redux/todos/actions'
+import { useTodos } from '../context/todosContext'
 
 interface IProps extends IItem {}
 
 const Item: React.FC<IProps> = (props) => {
 
-    const dispatch = useAppDispatch()
-
     const [hovered, setHovered] = useState<boolean>(false)
     const [isEditting, setEditting] = useState<boolean>(false)
     const [content, setContent] = useState<string>(props.content)
+
+    const {
+      removeAItem,
+      toggleCompletedItem,
+      editAItem
+    } = useTodos()
 
     const onBlurInput = () => {
       setEditting(false)
@@ -21,7 +23,7 @@ const Item: React.FC<IProps> = (props) => {
 
     const onSubmitEditForm = (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault()
-      dispatch(actions.doEditItem(props.id, content))
+      editAItem(props.id, content)
       setEditting(false)
     }
 
@@ -38,7 +40,7 @@ const Item: React.FC<IProps> = (props) => {
                 ? "checkbox checked"
                 : "checkbox not-checked"
             }
-            onClick={() => dispatch(actions.doToggleCompletedItem(props.id))}
+            onClick={() => toggleCompletedItem(props.id)}
           >
           </span>
         </div>
@@ -73,7 +75,7 @@ const Item: React.FC<IProps> = (props) => {
                 ? "removed-btn"
                 : "removed-btn hidden"
             }
-            onClick={() => dispatch(actions.doRemoveAItem(props.id))}
+            onClick={() => removeAItem(props.id)}
           >
             <i className="fa-solid fa-xmark"></i>
           </button>

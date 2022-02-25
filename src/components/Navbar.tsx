@@ -1,8 +1,6 @@
 import React from 'react'
-import { useAppSelector, useAppDispatch } from '../redux/hooks'
 import { Link, useLocation } from 'react-router-dom'
-import actions from '../redux/todos/actions'
-import './styles/Navbar.scss'
+import { useTodos } from '../context/todosContext'
 
 interface ILinkProps {
     to: string,
@@ -27,24 +25,25 @@ const SuiLink: React.FC<ILinkProps> = ({ to, link }) => {
 }
 
 const Navbar = () => {
+    
+    const { 
+        items,
+        removeAllCompletedItems
+    } = useTodos()
 
-    const dispatch = useAppDispatch()
-
-    const todoItems = useAppSelector(state => state.todos)
-
-    const leftItemsQty = todoItems.reduce((qty, item) => {
+    const leftItemsQty = items.reduce((qty, item) => {
         if(!item.completed) {
             qty ++
         }
         return qty
     }, 0)
 
-    const completedItemsQty = todoItems.length - leftItemsQty
+    const completedItemsQty = items.length - leftItemsQty
 
     return (
         <>
             {
-                todoItems.length > 0
+                items.length > 0
                     ? <div className="nav">
                         <span>{ leftItemsQty } items left</span>
                         <div className="links-wrapper">
@@ -58,7 +57,7 @@ const Navbar = () => {
                                     ? "clear-btn"
                                     : "clear-btn hidden"
                             }
-                            onClick={() => dispatch(actions.doRemoveAllCompletedItems())}
+                            onClick={() => removeAllCompletedItems()}
                         >
                             Clear completed
                         </button>

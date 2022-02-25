@@ -1,17 +1,15 @@
 import React from 'react'
 import Item from '../components/Item'
-import { useAppSelector } from '../redux/hooks'
+import { useTodos } from '../context/todosContext'
 
 const AllItems = () => {
 
-    const todoItems = useAppSelector(state => state.todos)
-
-    console.log(todoItems)
+    const todos = useTodos()
 
     return (
         <>
             {
-                todoItems.map(item => (
+                todos.items.map(item => (
                     <Item
                         key={ item.id }
                         {...item}

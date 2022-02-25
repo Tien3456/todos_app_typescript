@@ -1,18 +1,16 @@
 import React, { useState } from 'react'
-import './styles/Form.scss'
-import { useAppDispatch } from '../redux/hooks'
-import actions from '../redux/todos/actions'
+import { useTodos } from '../context/todosContext'
 
 const Form = () => {
 
-    const dispatch = useAppDispatch()
-
     const [value, setValue] = useState<string>('')
+
+    const { addAItem } = useTodos()
 
     const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         if(value.trim() !== '') {
-            dispatch(actions.doAddAItem({ content: value }))
+            addAItem({ content: value })
             setValue('')
         }
     }
